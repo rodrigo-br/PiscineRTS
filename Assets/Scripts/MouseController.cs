@@ -26,6 +26,5 @@ public class MouseController : MonoBehaviour
             _targetPosition = Camera.main.ScreenToWorldPoint(_frameInput.MousePosition);
         }
         transform.position = Vector2.MoveTowards(transform.position, _targetPosition, Time.deltaTime * _movementSpeed);
-
     }
 }
