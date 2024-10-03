@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0580792332a1cc84aa16927fc5aafe4b, type: 3}
   m_Name: CharacterRunSO
   m_EditorClassIdentifier: 
-  _spritesN:
+  SpritesN:
   - {fileID: -344723771, guid: 68519b2f5879a104080a13ac71bf1c8a, type: 3}
   - {fileID: -1810637283, guid: 68519b2f5879a104080a13ac71bf1c8a, type: 3}
   - {fileID: -64907637, guid: 68519b2f5879a104080a13ac71bf1c8a, type: 3}
@@ -21,7 +21,7 @@ MonoBehaviour:
   - {fileID: -510019835, guid: 68519b2f5879a104080a13ac71bf1c8a, type: 3}
   - {fileID: 770207683, guid: 68519b2f5879a104080a13ac71bf1c8a, type: 3}
   - {fileID: 742178578, guid: 68519b2f5879a104080a13ac71bf1c8a, type: 3}
-  _spritesNE:
+  SpritesNE:
   - {fileID: -1353494303, guid: fb703709ff5318245822314a16c17402, type: 3}
   - {fileID: 423424612, guid: fb703709ff5318245822314a16c17402, type: 3}
   - {fileID: -1738973260, guid: fb703709ff5318245822314a16c17402, type: 3}
@@ -30,7 +30,7 @@ MonoBehaviour:
   - {fileID: 2044706160, guid: fb703709ff5318245822314a16c17402, type: 3}
   - {fileID: -1000811412, guid: fb703709ff5318245822314a16c17402, type: 3}
   - {fileID: 977733706, guid: fb703709ff5318245822314a16c17402, type: 3}
-  _spritesE:
+  SpritesE:
   - {fileID: 1147777103, guid: 5d9def0e327d0c841a699cb4eb5bc403, type: 3}
   - {fileID: 1957273497, guid: 5d9def0e327d0c841a699cb4eb5bc403, type: 3}
   - {fileID: 1869599947, guid: 5d9def0e327d0c841a699cb4eb5bc403, type: 3}
@@ -39,7 +39,7 @@ MonoBehaviour:
   - {fileID: -852437616, guid: 5d9def0e327d0c841a699cb4eb5bc403, type: 3}
   - {fileID: -383718136, guid: 5d9def0e327d0c841a699cb4eb5bc403, type: 3}
   - {fileID: 1249958828, guid: 5d9def0e327d0c841a699cb4eb5bc403, type: 3}
-  _spritesSE:
+  SpritesSE:
   - {fileID: 1232652358, guid: 4242d34d78296c84bb9f7e8c65676631, type: 3}
   - {fileID: -2004604410, guid: 4242d34d78296c84bb9f7e8c65676631, type: 3}
   - {fileID: -73131135, guid: 4242d34d78296c84bb9f7e8c65676631, type: 3}
@@ -48,7 +48,7 @@ MonoBehaviour:
   - {fileID: -621229832, guid: 4242d34d78296c84bb9f7e8c65676631, type: 3}
   - {fileID: 1455159374, guid: 4242d34d78296c84bb9f7e8c65676631, type: 3}
   - {fileID: -1009193652, guid: 4242d34d78296c84bb9f7e8c65676631, type: 3}
-  _spritesS:
+  SpritesS:
   - {fileID: -1174339218, guid: d46bba91a882a8c4890e739856fbc325, type: 3}
   - {fileID: -1728142271, guid: d46bba91a882a8c4890e739856fbc325, type: 3}
   - {fileID: -95319278, guid: d46bba91a882a8c4890e739856fbc325, type: 3}
@@ -57,7 +57,7 @@ MonoBehaviour:
   - {fileID: 1770907652, guid: d46bba91a882a8c4890e739856fbc325, type: 3}
   - {fileID: -376403653, guid: d46bba91a882a8c4890e739856fbc325, type: 3}
   - {fileID: -102937217, guid: d46bba91a882a8c4890e739856fbc325, type: 3}
-  _spritesSW:
+  SpritesSW:
   - {fileID: 161761942, guid: f9c79790172f9914faf4cd1635fc314f, type: 3}
   - {fileID: 1324624104, guid: f9c79790172f9914faf4cd1635fc314f, type: 3}
   - {fileID: 1495153242, guid: f9c79790172f9914faf4cd1635fc314f, type: 3}
@@ -66,7 +66,7 @@ MonoBehaviour:
   - {fileID: -447548013, guid: f9c79790172f9914faf4cd1635fc314f, type: 3}
   - {fileID: 1434397398, guid: f9c79790172f9914faf4cd1635fc314f, type: 3}
   - {fileID: 284212307, guid: f9c79790172f9914faf4cd1635fc314f, type: 3}
-  _spritesW:
+  SpritesW:
   - {fileID: 1025962077, guid: 2bdacf61cadd1e94589a1d5bda21f270, type: 3}
   - {fileID: 480887601, guid: 2bdacf61cadd1e94589a1d5bda21f270, type: 3}
   - {fileID: 7901381, guid: 2bdacf61cadd1e94589a1d5bda21f270, type: 3}
@@ -75,7 +75,7 @@ MonoBehaviour:
   - {fileID: 1508039420, guid: 2bdacf61cadd1e94589a1d5bda21f270, type: 3}
   - {fileID: 2009230447, guid: 2bdacf61cadd1e94589a1d5bda21f270, type: 3}
   - {fileID: -2041551775, guid: 2bdacf61cadd1e94589a1d5bda21f270, type: 3}
-  _spritesNW:
+  SpritesNW:
   - {fileID: 778621377, guid: 48899b03716e8574ebff600f7971e75e, type: 3}
   - {fileID: 912639766, guid: 48899b03716e8574ebff600f7971e75e, type: 3}
   - {fileID: 1288727987, guid: 48899b03716e8574ebff600f7971e75e, type: 3}
