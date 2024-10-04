@@ -15,4 +15,10 @@ MonoBehaviour:
   GamePlayMusic: []
   UIMusic: []
   StartScreenMusic: []
-  Running: []
+  Running:
+  - {fileID: 11400000, guid: db63668a739d47045a7f708edf1c9129, type: 2}
+  - {fileID: 11400000, guid: 08d6667eb87f5ca48aed935ab0c83dd0, type: 2}
+  - {fileID: 11400000, guid: 5e893711ece1ad24f921727d8f33f8a1, type: 2}
+  - {fileID: 11400000, guid: e1128c098276ed74a910bbb26a93933e, type: 2}
+  - {fileID: 11400000, guid: e7e0d0181e38aeb43bce516ad6f7f153, type: 2}
+  - {fileID: 11400000, guid: bb8b49590f300754fade37a10ad2e958, type: 2}

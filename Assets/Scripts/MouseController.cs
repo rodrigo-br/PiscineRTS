@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MouseController : MonoBehaviour
 {
-    public static Action<bool> OnMovementChange;
     [SerializeField] private float _movementSpeed = 5f;
     [SerializeField] private Animator _animator;
     private InputManager _input;

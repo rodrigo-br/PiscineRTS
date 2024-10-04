@@ -31,12 +31,12 @@ public class AudioManager : MonoBehaviour
 
     private void OnEnable()
     {
-        MouseController.OnMovementChange += MouseController_OnMovementChange;
+        CharacterAnimation.OnMovementChange += CharacterAnimation_OnMovementChange;
     }
 
     private void OnDisable()
     {
-        MouseController.OnMovementChange -= MouseController_OnMovementChange;
+        CharacterAnimation.OnMovementChange -= CharacterAnimation_OnMovementChange;
     }
 
     private void CreateAudioSourcePool()
@@ -146,7 +146,7 @@ public class AudioManager : MonoBehaviour
 
     #region SFX
 
-    private void MouseController_OnMovementChange(bool obj)
+    private void CharacterAnimation_OnMovementChange(bool obj)
     {
         if (obj)
             PlayRandomSound(_soundsCollectionSO.Running);
