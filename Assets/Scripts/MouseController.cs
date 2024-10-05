@@ -4,29 +4,28 @@ using UnityEngine;
 
 public class MouseController : MonoBehaviour
 {
+    [SerializeField] private List<CharacterController> _characterController;
     public FrameInput FrameInput { get; private set; }
-    public Vector2 TargetPosition {get; private set; }
-    [SerializeField] private float _movementSpeed = 5f;
     private InputManager _input;
 
     private void Awake()
     {
         _input = GetComponent<InputManager>();
-        TargetPosition = transform.position;
     }
 
     private void Update()
     {
         FrameInput = _input.GatherInput();
-        HandleMovement();
+        HandleClickInput();
     }
 
-    private void HandleMovement()
+    private void HandleClickInput()
     {
-        if (FrameInput.MouseLeftClick)
+        if (!FrameInput.MouseLeftClick) { return; }
+        Vector2 targetPosition = Camera.main.ScreenToWorldPoint(FrameInput.MousePosition);
+        foreach (var character in _characterController)
         {
-            TargetPosition = Camera.main.ScreenToWorldPoint(FrameInput.MousePosition);
+            character.SetTargetPosition(targetPosition);
         }
-        transform.position = Vector2.MoveTowards(transform.position, TargetPosition, Time.deltaTime * _movementSpeed);
     }
 }

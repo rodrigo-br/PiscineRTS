@@ -5,12 +5,12 @@ public class CharacterAnimation : MonoBehaviour
 {
     public static Action<bool> OnMovementChange;
     private Animator _animator;
-    private MouseController _mouseController;
+    private CharacterController _characterController;
     private bool _isMoving;
 
     private void Awake()
     {
-        _mouseController = GetComponentInParent<MouseController>();
+        _characterController = GetComponentInParent<CharacterController>();
         _animator = GetComponent<Animator>();
         _animator.Play("Knight_Idle_N_Animation");
     }
@@ -22,8 +22,8 @@ public class CharacterAnimation : MonoBehaviour
 
     private void HandleSpriteAnimation()
     {
-        Vector2 direction = ((Vector2)transform.position - _mouseController.TargetPosition).normalized;
-        float distance = Vector2.Distance(transform.position, _mouseController.TargetPosition);
+        Vector2 direction = ((Vector2)transform.position - _characterController.TargetPosition).normalized;
+        float distance = Vector2.Distance(transform.position, _characterController.TargetPosition);
 
         if (distance <= 0.2f && _isMoving)
         {
