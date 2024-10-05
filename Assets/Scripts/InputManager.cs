@@ -32,6 +32,7 @@ public class InputManager : MonoBehaviour
             MousePosition = _mousePosition.ReadValue<Vector2>(),
             MouseLeftClick = _mouseLeftClick.WasPressedThisFrame(),
             MouseLeftHeld = _mouseLeftClick.IsPressed(),
+            MouseLeftReleased = _mouseLeftClick.WasReleasedThisFrame(),
             MouseRightClick = _mouseRightClick.WasPressedThisFrame(),
             ControlHeld = _control.IsPressed(),
         };
@@ -43,6 +44,7 @@ public struct FrameInput
     public Vector2 MousePosition;
     public bool MouseLeftClick;
     public bool MouseLeftHeld;
+    public bool MouseLeftReleased;
     public bool MouseRightClick;
     public bool ControlHeld;
 }
