@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MouseController : MonoBehaviour
 {
-    [SerializeField] private List<CharacterController> _characterControllers;
     public FrameInput FrameInput { get; private set; }
+    private List<CharacterController> _characterControllers;
     private InputManager _input;
 
     private void Awake()
@@ -23,11 +23,15 @@ public class MouseController : MonoBehaviour
     private void HandleLeftClickInput()
     {
         if (!FrameInput.MouseLeftClick) { return; }
-        foreach (var character in _characterControllers)
+
+        if (!FrameInput.ControlHeld)
         {
-            character.OnSelected?.Invoke(false);
+            foreach (var character in _characterControllers)
+            {
+                character.OnSelected?.Invoke(false);
+            }
+            _characterControllers.Clear();
         }
-        _characterControllers.Clear();
         Vector2 targetPosition = Camera.main.ScreenToWorldPoint(FrameInput.MousePosition);
         RaycastHit2D hit = Physics2D.Raycast(targetPosition, Vector2.zero);
         if (hit.collider != null)

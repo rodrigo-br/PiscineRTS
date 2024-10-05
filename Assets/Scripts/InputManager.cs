@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class InputManager : MonoBehaviour
 {
     private InputSystem_Actions _inputActions;
-    private InputAction _mousePosition, _mouseLeftClick, _mouseRightClick;
+    private InputAction _mousePosition, _mouseLeftClick, _mouseRightClick, _control;
 
     private void Awake()
     {
@@ -12,6 +12,7 @@ public class InputManager : MonoBehaviour
         _mousePosition = _inputActions.Gameplay.MousePosition;
         _mouseLeftClick = _inputActions.Gameplay.MouseLeftClick;
         _mouseRightClick = _inputActions.Gameplay.MouseRightClick;
+        _control = _inputActions.Gameplay.Control;
     }
 
     private void OnEnable()
@@ -32,6 +33,7 @@ public class InputManager : MonoBehaviour
             MouseLeftClick = _mouseLeftClick.WasPressedThisFrame(),
             MouseLeftHeld = _mouseLeftClick.IsPressed(),
             MouseRightClick = _mouseRightClick.WasPressedThisFrame(),
+            ControlHeld = _control.IsPressed(),
         };
     }
 }
@@ -42,5 +44,6 @@ public struct FrameInput
     public bool MouseLeftClick;
     public bool MouseLeftHeld;
     public bool MouseRightClick;
+    public bool ControlHeld;
 }
 
