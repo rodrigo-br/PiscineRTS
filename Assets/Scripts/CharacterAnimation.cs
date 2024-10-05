@@ -4,6 +4,7 @@ using UnityEngine;
 public class CharacterAnimation : MonoBehaviour
 {
     public static Action<bool> OnMovementChange;
+    [SerializeField] private SpriteRenderer _selectionUI;
     private Animator _animator;
     private CharacterController _characterController;
     private bool _isMoving;
@@ -13,6 +14,16 @@ public class CharacterAnimation : MonoBehaviour
         _characterController = GetComponentInParent<CharacterController>();
         _animator = GetComponent<Animator>();
         _animator.Play("Knight_Idle_N_Animation");
+    }
+
+    private void OnEnable()
+    {
+        _characterController.OnSelected += SetSelectionUI;
+    }
+
+    private void OnDisable()
+    {
+        _characterController.OnSelected -= SetSelectionUI;
     }
 
     private void Update()
@@ -138,6 +149,11 @@ public class CharacterAnimation : MonoBehaviour
     public void TriggerOnMovementChange()
     {
         OnMovementChange?.Invoke(true);
+    }
+
+    private void SetSelectionUI(bool state)
+    {
+        _selectionUI.enabled = state;
     }
 
 }

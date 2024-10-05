@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 
-public class CharacterController : MonoBehaviour
+public class CharacterController : MonoBehaviour, ISelectableUnit
 {
+    public Action<bool> OnSelected;
     public Vector2 TargetPosition { get; private set; }
     [SerializeField] private float _movementSpeed = 5f;
 
