@@ -11,12 +11,14 @@ public class MouseController : MonoBehaviour
     private Vector2 _leftMouseStartPosition;
     private float _lastClickTime;
     private float _offset = 0.1f;
+    private int _enemyLayerMask;
 
     private void Awake()
     {
         _input = GetComponent<InputManager>();
         _characterControllers = new List<CharacterController>();
         _selectionAreaTransform.gameObject.SetActive(false);
+        _enemyLayerMask = LayerMask.GetMask("Enemy");
     }
 
     private void Update()
@@ -107,15 +109,31 @@ public class MouseController : MonoBehaviour
     private void HandleRightClickInput()
     {
         if (!FrameInput.MouseRightClick) { return; }
-        Vector2 targetPosition = Camera.main.ScreenToWorldPoint(FrameInput.MousePosition);
+        Vector2 targetPosition = Camera.main.ScreenToWorldPoint(FrameInput.MousePosition);        
 
-        List<Vector2> targetPositions = GetPositionListAround(targetPosition, new float[] { 0.5f, 1f, 1.5f }, new int[] { 5, 10, 20});
+        HandleMovement(targetPosition);
+    }
 
+    private void HandleMovement(Vector2 targetPosition)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(targetPosition, Vector2.zero, Mathf.Infinity, _enemyLayerMask);
+        Transform damageableTarget = null;
+        if (hit.collider != null)
+        {
+            IDamageable damageable = hit.collider.GetComponentInChildren<IDamageable>();
+            if (damageable != null)
+            {
+                damageableTarget = hit.collider.transform;
+            }
+        }
+
+        List<Vector2> targetPositions = GetPositionListAround(targetPosition, new float[] { 0.5f, 1f, 1.5f }, new int[] { 5, 10, 20 });
         int targetPositionIndex = 0;
 
         foreach (var character in _characterControllers)
         {
             character.SetTargetPosition(targetPositions[targetPositionIndex]);
+            character.SetDamageableTarget(damageableTarget);
             targetPositionIndex = (targetPositionIndex + 1) % targetPositions.Count;
         }
     }

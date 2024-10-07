@@ -7,12 +7,16 @@ public class Health : MonoBehaviour, IDamageable, IHealable
     public static Action<Health> OnHealthChange;
     public static Action<Health> OnDeath;
     [field: SerializeField] public int MaxHealth { get; private set; } = 100;
-    [SerializeField] private Transform HealthPresenter;
+    [SerializeField] private Transform _healthPresenter;
+    private SpriteRenderer _backgroundSpriteRenderer;
     public int CurrentHealth { get; private set; }
     private readonly int minMaxHealth = 10;
+    private float _disableHealthUIAfterSeconds = 2f;
+    private float _currentDisableHealthUITime = 0f;
 
     private void Awake()
     {
+        _backgroundSpriteRenderer = GetComponent<SpriteRenderer>();
         ResetHealth();
     }
 
@@ -31,9 +35,26 @@ public class Health : MonoBehaviour, IDamageable, IHealable
         OnHealthChange?.Invoke(this);
     }
 
+    private void Update()
+    {
+        _currentDisableHealthUITime += Time.deltaTime;
+        if (_currentDisableHealthUITime >= _disableHealthUIAfterSeconds)
+        {
+            SetHealthUI(false);
+        }
+    }
+
     private void UpdateUI(Health sender)
     {
-        HealthPresenter.localScale = new Vector3((float)CurrentHealth / MaxHealth, HealthPresenter.localScale.y, 1);
+        if (sender != this) { return; }
+
+        _healthPresenter.localScale = new Vector3((float)CurrentHealth / MaxHealth, _healthPresenter.localScale.y, 1);
+        _currentDisableHealthUITime = 0f;
+        if (CurrentHealth != MaxHealth)
+        {
+            _currentDisableHealthUITime -= 4;
+        }
+        SetHealthUI(true);
     }
 
     public void ResetHealth()
@@ -84,6 +105,12 @@ public class Health : MonoBehaviour, IDamageable, IHealable
     public void Heal(int amount)
     {
         ChangeHealthByAmount(amount);
+    }
+
+    private void SetHealthUI(bool value)
+    {
+        _backgroundSpriteRenderer.enabled = value;
+        _healthPresenter.gameObject.SetActive(value);
     }
 
     [Button]
