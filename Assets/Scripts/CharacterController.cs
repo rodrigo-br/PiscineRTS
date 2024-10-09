@@ -5,6 +5,7 @@ public class CharacterController : MonoBehaviour, ISelectableUnit
 {
     public Action<bool> OnSelected;
     public Vector2 TargetPosition { get; private set; }
+    public bool IsAttacking { get; private set; }
     [SerializeField] private float _movementSpeed = 5f;
     [SerializeField] private float _attackSpeed = 1f;
     private Transform _damageableTarget;
@@ -28,13 +29,18 @@ public class CharacterController : MonoBehaviour, ISelectableUnit
 
     private void HandleAttack()
     {
-        if (_damageableTarget == null) { return; }
+        if (_damageableTarget == null) { IsAttacking = false; return; }
         _currentAttackTime += Time.deltaTime;
         if (_currentAttackTime < _attackSpeed) { return; }
         if (Vector2.Distance(transform.position, TargetPosition) < 0.1f)
         {
+            IsAttacking = true;
             _currentAttackTime = 0f;
             _damageableTarget.GetComponentInChildren<IDamageable>().TakeDamage(10);
+        }
+        else
+        {
+            IsAttacking = false;
         }
     }
 

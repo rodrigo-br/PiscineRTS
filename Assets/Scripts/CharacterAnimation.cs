@@ -44,10 +44,6 @@ public class CharacterAnimation : MonoBehaviour
         {
             _isMoving = true;
         }
-        else if (!_isMoving)
-        {
-            return;
-        }
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         if (angle < 0)
@@ -55,10 +51,13 @@ public class CharacterAnimation : MonoBehaviour
             angle += 360;
         }
 
-
         if (angle >= 337.5f || angle < 22.5f)
         {
-            if (_isMoving)
+            if (_characterController.IsAttacking)
+            {
+                _animator.Play("Knight_Attack_W_Animation");
+            }
+            else if (_isMoving)
             {
                 _animator.Play("Knight_Run_W_Animation");
             }
@@ -69,7 +68,11 @@ public class CharacterAnimation : MonoBehaviour
         }
         else if (angle >= 22.5f && angle < 67.5f)
         {
-            if (_isMoving)
+            if (_characterController.IsAttacking)
+            {
+                _animator.Play("Knight_Attack_SW_Animation");
+            }
+            else if (_isMoving)
             {
                 _animator.Play("Knight_Run_SW_Animation");
             }
@@ -80,7 +83,11 @@ public class CharacterAnimation : MonoBehaviour
         }
         else if (angle >= 67.5f && angle < 112.5f)
         {
-            if (_isMoving)
+            if (_characterController.IsAttacking)
+            {
+                _animator.Play("Knight_Attack_S_Animation");
+            }
+            else if (_isMoving)
             {
                 _animator.Play("Knight_Run_S_Animation");
             }
@@ -91,7 +98,11 @@ public class CharacterAnimation : MonoBehaviour
         }
         else if (angle >= 112.5f && angle < 157.5f)
         {
-            if (_isMoving)
+            if (_characterController.IsAttacking)
+            {
+                _animator.Play("Knight_Attack_SE_Animation");
+            }
+            else if (_isMoving)
             {
                 _animator.Play("Knight_Run_SE_Animation");
             }
@@ -102,7 +113,11 @@ public class CharacterAnimation : MonoBehaviour
         }
         else if (angle >= 157.5f && angle < 202.5f)
         {
-            if (_isMoving)
+            if (_characterController.IsAttacking)
+            {
+                _animator.Play("Knight_Attack_E_Animation");
+            }
+            else if (_isMoving)
             {
                 _animator.Play("Knight_Run_E_Animation");
             }
@@ -113,7 +128,11 @@ public class CharacterAnimation : MonoBehaviour
         }
         else if (angle >= 202.5f && angle < 247.5f)
         {
-            if (_isMoving)
+            if (_characterController.IsAttacking)
+            {
+                _animator.Play("Knight_Attack_NE_Animation");
+            }
+            else if (_isMoving)
             {
                 _animator.Play("Knight_Run_NE_Animation");
             }
@@ -124,7 +143,11 @@ public class CharacterAnimation : MonoBehaviour
         }
         else if (angle >= 247.5f && angle < 292.5f)
         {
-            if (_isMoving)
+            if (_characterController.IsAttacking)
+            {
+                _animator.Play("Knight_Attack_N_Animation");
+            }
+            else if (_isMoving)
             {
                 _animator.Play("Knight_Run_N_Animation");
             }
@@ -135,7 +158,11 @@ public class CharacterAnimation : MonoBehaviour
         }
         else if (angle >= 292.5f && angle < 337.5f)
         {
-            if (_isMoving)
+            if (_characterController.IsAttacking)
+            {
+                _animator.Play("Knight_Attack_NW_Animation");
+            }
+            else if (_isMoving)
             {
                 _animator.Play("Knight_Run_NW_Animation");
             }
