@@ -124,16 +124,27 @@ public class MouseController : MonoBehaviour
             if (damageable != null)
             {
                 damageableTarget = hit.collider.transform;
+                foreach (var character in _characterControllers)
+                {
+                    character.SetHitPosition(hit.collider.GetComponentInChildren<Health>().FindHitPosition(character.transform));
+                }
             }
         }
 
+        if (damageableTarget == null)
+        {
+            HandleNoDamageableTarget(targetPosition, damageableTarget);
+        }
+    }
+
+    private void HandleNoDamageableTarget(Vector2 targetPosition, Transform damageableTarget)
+    {
         List<Vector2> targetPositions = GetPositionListAround(targetPosition, new float[] { 0.5f, 1f, 1.5f }, new int[] { 5, 10, 20 });
         int targetPositionIndex = 0;
 
         foreach (var character in _characterControllers)
         {
             character.SetTargetPosition(targetPositions[targetPositionIndex]);
-            character.SetDamageableTarget(damageableTarget);
             targetPositionIndex = (targetPositionIndex + 1) % targetPositions.Count;
         }
     }

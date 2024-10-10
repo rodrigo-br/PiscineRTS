@@ -10,6 +10,7 @@ public class CharacterController : MonoBehaviour, ISelectableUnit
     [SerializeField] private float _attackSpeed = 1f;
     private Transform _damageableTarget;
     private float _currentAttackTime = 0f;
+    private HitPosition _currentHitPosition;
 
     private void Awake()
     {
@@ -44,13 +45,13 @@ public class CharacterController : MonoBehaviour, ISelectableUnit
         }
     }
 
+    public void SetHitPosition(HitPosition newHitPosition)
+    {
+        _currentHitPosition = newHitPosition;
+    }
+
     public void SetTargetPosition(Vector2 newTargetPosition)
     {
         TargetPosition = newTargetPosition;
-    }
-
-    public void SetDamageableTarget(Transform damageableTarget)
-    {
-        _damageableTarget = damageableTarget;
     }
 }

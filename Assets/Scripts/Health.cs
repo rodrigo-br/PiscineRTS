@@ -1,5 +1,6 @@
 using NaughtyAttributes;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Health : MonoBehaviour, IDamageable, IHealable
@@ -8,11 +9,13 @@ public class Health : MonoBehaviour, IDamageable, IHealable
     public static Action<Health> OnDeath;
     [field: SerializeField] public int MaxHealth { get; private set; } = 100;
     [SerializeField] private Transform _healthPresenter;
+    [SerializeReference] private Transform _hitPointsTransform;
     private SpriteRenderer _backgroundSpriteRenderer;
     public int CurrentHealth { get; private set; }
     private readonly int minMaxHealth = 10;
     private float _disableHealthUIAfterSeconds = 2f;
     private float _currentDisableHealthUITime = 0f;
+    private List<HitPosition> _hitPositions = new List<HitPosition>();
 
     private void Awake()
     {
@@ -32,6 +35,10 @@ public class Health : MonoBehaviour, IDamageable, IHealable
 
     private void Start()
     {
+        foreach (Transform hitPointTransform in _hitPointsTransform)
+        {
+            _hitPositions.Add(new HitPosition(hitPointTransform, transform));
+        }
         OnHealthChange?.Invoke(this);
     }
 
@@ -111,6 +118,19 @@ public class Health : MonoBehaviour, IDamageable, IHealable
     {
         _backgroundSpriteRenderer.enabled = value;
         _healthPresenter.gameObject.SetActive(value);
+    }
+
+    public HitPosition FindHitPosition(Transform attacker)
+    {
+        foreach (HitPosition hitPosition in _hitPositions)
+        {
+            if (!hitPosition.IsOccupied)
+            {
+                hitPosition.Occupy(attacker);
+                return hitPosition;
+            }
+        }
+        return null;
     }
 
     [Button]
